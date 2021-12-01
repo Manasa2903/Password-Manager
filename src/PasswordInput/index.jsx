@@ -10,6 +10,7 @@ const PasswordInput = () => {
   const [password, setPassword] = useState('')
   const [id, setId] = useState(1)
   const [showPassword, setShowPassword] = useState(false)
+  const [searchedList, setSearchedList] = useState(passwordList)
 
   const addPasswords = event => {
     event.preventDefault()
@@ -21,6 +22,7 @@ const PasswordInput = () => {
     }
 
     setPasswordList([...passwordList, newPassword])
+    setSearchedList([...passwordList, newPassword])
     setId(id + 1)
   }
 
@@ -30,6 +32,7 @@ const PasswordInput = () => {
     )
 
     setPasswordList(filteredPasswords)
+    setSearchedList(filteredPasswords)
   }
 
   return (
@@ -87,13 +90,13 @@ const PasswordInput = () => {
         />
       </div>
       <div>
-        <p>{passwordList.length} </p>
         <h1>Your Passwords</h1>
+        <p>{passwordList.length} </p>
       </div>
       <div>
         <SearchPasswords
           passwordDetails={passwordList}
-          setPasswordList={setPasswordList}
+          setSearchedList={setSearchedList}
         />
       </div>
       <div>
@@ -101,8 +104,8 @@ const PasswordInput = () => {
       </div>
 
       <ul>
-        {passwordList.length > 0 ? (
-          passwordList.map(eachPassword => (
+        {searchedList.length > 0 ? (
+          searchedList.map(eachPassword => (
             <PasswordList
               key={eachPassword.id}
               passwordDetails={eachPassword}

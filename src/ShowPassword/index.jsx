@@ -1,6 +1,3 @@
-import {useState} from 'react'
-import PasswordInput from '../PasswordList'
-
 const ShowPassword = ({setShowPassword}) => {
   //   const [showPassword, setShowPassword] = useState(false)
 

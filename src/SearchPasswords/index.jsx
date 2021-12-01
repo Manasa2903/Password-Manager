@@ -1,15 +1,16 @@
-import {useState} from 'react'
-
-const SearchPasswords = ({setPasswordList, passwordDetails}) => {
-  const [searchVal, setSearchVal] = useState('')
+const SearchPasswords = ({passwordDetails, setSearchedList}) => {
   const searchPasswords = event => {
-    setSearchVal(event.target.value)
-    const searchedPasswords = passwordDetails.filter(eachPassword =>
-      eachPassword.username.toLowerCase().includes(searchVal.toLowerCase()),
-    )
-    console.log('search', searchedPasswords)
+    const searchVal = event.target.value
+    if (searchVal) {
+      const searchedPasswords = passwordDetails.filter(eachPassword =>
+        eachPassword.username.toLowerCase().includes(searchVal.toLowerCase()),
+      )
+      console.log('search', searchedPasswords)
 
-    setPasswordList(searchedPasswords)
+      setSearchedList(searchedPasswords)
+    } else {
+      setSearchedList(passwordDetails)
+    }
   }
 
   return (
